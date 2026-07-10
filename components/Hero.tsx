@@ -4,7 +4,7 @@ import EmailForm from "@/components/EmailForm";
 
 export default function Hero() {
   return (
-    <section className="relative z-10 flex min-h-screen items-center justify-center px-6 py-4">
+    <section className="relative z-10 flex h-full items-center justify-center px-6">
       <div className="mx-auto flex w-full max-w-5xl flex-col items-center text-center">
 
         {/* Logo */}

@@ -9,8 +9,8 @@ html,
 body {
   background: #040816;
   color: white;
-  overflow-x: hidden;
-  min-height: 100%;
+  overflow: hidden;
+  height: 100%;
   font-family: Arial, Helvetica, sans-serif;
 }
 

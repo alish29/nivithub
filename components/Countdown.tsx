@@ -5,7 +5,7 @@ import { useEffect, useMemo, useState } from "react";
 export default function Countdown() {
   const targetDate = useMemo(() => {
     const date = new Date();
-    date.setDate(date.getDate() + 15);
+    date.setDate(date.getDate() + 30);
     return date;
   }, []);
 
@@ -40,9 +40,17 @@ export default function Countdown() {
     };
   };
 
-  const [timeLeft, setTimeLeft] = useState(getTimeLeft());
+  const [mounted, setMounted] = useState(false);
+  const [timeLeft, setTimeLeft] = useState({
+    days: "00",
+    hours: "00",
+    minutes: "00",
+    seconds: "00",
+  });
 
   useEffect(() => {
+    setMounted(true);
+    setTimeLeft(getTimeLeft());
     const timer = setInterval(() => {
       setTimeLeft(getTimeLeft());
     }, 1000);
