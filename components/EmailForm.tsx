@@ -36,55 +36,56 @@ export default function EmailForm() {
     }
   }
 
-  if (status === "success") {
-    return (
-      <div className="flex items-center gap-3 rounded-2xl border border-cyan-400/30 bg-cyan-500/10 px-5 py-4 backdrop-blur-xl">
-        <CheckCircle className="h-5 w-5 text-cyan-400 flex-shrink-0" />
-        <p className="text-sm text-cyan-300">{message}</p>
-      </div>
-    );
-  }
-
   return (
-    <form onSubmit={handleSubmit} className="w-full max-w-xl space-y-3">
-      <div className="flex items-center rounded-2xl border border-white/10 bg-white/5 p-2 backdrop-blur-2xl shadow-[0_10px_40px_rgba(0,0,0,0.25)]">
-        <div className="flex flex-1 items-center gap-3 px-4">
-          <Mail className="h-5 w-5 text-cyan-400" />
+    <form onSubmit={handleSubmit} className="w-full space-y-2">
+      <div className="flex items-center rounded-full border border-slate-200 bg-white p-1 sm:p-1.5 shadow-[0_10px_35px_rgba(99,102,241,0.06)] focus-within:border-[#818cf8] focus-within:ring-2 focus-within:ring-[#818cf8]/10 transition-all duration-300">
+        <div className="flex flex-1 items-center gap-2.5 px-3 sm:px-4">
+          <Mail className="h-4 w-4 sm:h-5 sm:w-5 text-[#818cf8]" />
           <input
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="Enter your work email"
+            placeholder="Enter your email address"
             required
             disabled={status === "loading"}
-            className="w-full bg-transparent text-sm text-white placeholder:text-slate-500 outline-none disabled:opacity-50"
+            className="w-full bg-transparent text-xs sm:text-sm text-slate-800 placeholder:text-slate-400 outline-none disabled:opacity-50"
           />
         </div>
 
         <button
           type="submit"
           disabled={status === "loading" || !email}
-          className="rounded-xl bg-gradient-to-r from-sky-500 via-cyan-500 to-blue-600 px-6 py-3 text-sm font-semibold text-white shadow-[0_0_25px_rgba(59,130,246,0.45)] transition-all duration-300 hover:scale-[1.03] hover:shadow-[0_0_35px_rgba(59,130,246,0.65)] disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+          className="rounded-full bg-gradient-to-r from-[#6366f1] via-[#5c5ee6] to-[#4f46e5] px-4 py-2 sm:px-6 sm:py-2.5 text-xs sm:text-sm font-semibold text-white shadow-[0_4px_12px_rgba(79,70,229,0.3)] hover:shadow-[0_6px_20px_rgba(79,70,229,0.5)] transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-1.5"
         >
           {status === "loading" ? (
-            <span className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
+            <span className="h-3.5 w-3.5 animate-spin rounded-full border-2 border-white border-t-transparent" />
           ) : (
-            <Send className="h-4 w-4" />
+            <>
+              <span>Notify Me</span>
+              <Send className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
+            </>
           )}
-          Notify Me
         </button>
       </div>
 
-      {status === "error" && (
-        <div className="flex items-center gap-2 px-1">
-          <AlertCircle className="h-4 w-4 text-red-500 flex-shrink-0" />
-          <p className="text-xs text-red-400">{message}</p>
-        </div>
-      )}
-
-      <p className="text-center text-xs tracking-wide text-slate-500">
-        No spam. Only important launch updates.
-      </p>
+      <div className="px-2">
+        {status === "success" ? (
+          <div className="flex items-center gap-1.5 text-xs text-emerald-600 font-medium">
+            <CheckCircle className="h-3.5 w-3.5 text-emerald-500 fill-emerald-500/10" />
+            <span>{message}</span>
+          </div>
+        ) : status === "error" ? (
+          <div className="flex items-center gap-1.5 text-xs text-rose-600 font-medium">
+            <AlertCircle className="h-3.5 w-3.5 text-rose-500 fill-rose-500/10" />
+            <span>{message}</span>
+          </div>
+        ) : (
+          <div className="flex items-center gap-1.5 text-[10px] sm:text-xs text-slate-500 font-medium">
+            <CheckCircle className="h-3.5 w-3.5 text-[#4f46e5] fill-[#4f46e5]/10" />
+            <span>No spam. Only updates about our launch.</span>
+          </div>
+        )}
+      </div>
     </form>
   );
 }

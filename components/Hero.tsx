@@ -1,67 +1,118 @@
+"use client";
+
 import Image from "next/image";
+import { Code } from "lucide-react";
+import { FaXTwitter, FaLinkedin, FaGithub, FaInstagram } from "react-icons/fa6";
+import { motion } from "framer-motion";
 import Countdown from "@/components/Countdown";
 import EmailForm from "@/components/EmailForm";
 
 export default function Hero() {
+  const socials = [
+    { name: "Twitter", icon: FaXTwitter, href: "https://twitter.com" },
+    { name: "LinkedIn", icon: FaLinkedin, href: "https://linkedin.com" },
+    { name: "GitHub", icon: FaGithub, href: "https://github.com" },
+    { name: "Instagram", icon: FaInstagram, href: "https://instagram.com" },
+  ];
+
   return (
-    <section className="relative z-10 flex h-full items-center justify-center px-6">
-      <div className="mx-auto flex w-full max-w-5xl flex-col items-center text-center">
+    <section className="relative z-10 flex flex-col justify-between h-full w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 overflow-hidden">
+      
+      {/* Header bar */}
+ 
 
-        {/* Logo */}
-        <Image
-          src="/nivlogo.png"
-          alt="NIVITHUB"
-          width={64}
-          height={64}
-          priority
-          className="mb-1.5 select-none"
-        />
+      {/* Main Grid content */}
+      <main className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center flex-1 w-full my-auto overflow-hidden">
+        
+        {/* Left Side: Call to Action, Form, Countdown */}
+        <div className="lg:col-span-6 flex flex-col justify-center space-y-4 sm:space-y-5 md:space-y-6 text-left max-w-xl mx-auto lg:mx-0 select-none">
+          
+          {/* Construction tag */}
+          <div className="inline-block self-start">
+            <span className="text-[10px] sm:text-xs font-bold tracking-widest text-[#4f46e5] uppercase">
+              Website Under Construction
+            </span>
+            <div className="h-1 w-14 bg-gradient-to-r from-[#4f46e5] to-[#6366f1] mt-1.5 rounded-full" />
+          </div>
 
-        {/* Company Name */}
-        <h2 className="text-xl sm:text-2xl font-light tracking-[0.55em] text-white">
-          NIVITHUB
-        </h2>
-
-        {/* Subtitle */}
-        <p className="mt-1 text-xs sm:text-sm text-slate-400">
-          Professional IT Solutions
-        </p>
-
-        {/* Badge */}
-        <div className="mt-3 rounded-full border border-cyan-400/20 bg-cyan-500/10 px-4 py-1 backdrop-blur-xl shadow-[0_0_20px_rgba(6,182,212,0.12)]">
-          <span className="text-xs font-medium text-cyan-300">
-            ✨ Something Amazing Is Coming
-          </span>
-        </div>
-
-        {/* Heading */}
-        <div className="mt-3">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-black leading-[0.95] text-white">
-            We&apos;re Building
+          {/* Heading */}
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-black tracking-tight text-slate-900 leading-[1.08]">
+            NivitHub is <br className="hidden sm:inline" />
+            <span className="bg-gradient-to-r from-[#4f46e5] via-[#5c5ee6] to-[#6366f1] bg-clip-text text-transparent">
+              Coming Soon!
+            </span>
           </h1>
 
-          <h1 className="mt-1 bg-gradient-to-r from-sky-400 via-blue-500 to-violet-500 bg-clip-text text-3xl sm:text-4xl md:text-5xl font-black leading-[0.95] text-transparent">
-            The Future
-          </h1>
+          {/* Subtitle description */}
+          <p className="text-xs sm:text-sm md:text-base text-slate-500 max-w-lg leading-relaxed">
+            We&apos;re crafting an innovative digital experience to help you do more, faster.
+          </p>
+
+          {/* Email form */}
+          <div className="w-full max-w-md">
+            <EmailForm />
+          </div>
+
+          {/* Timer section */}
+          <div className="w-full flex justify-start pt-1">
+            <Countdown />
+          </div>
+
+          {/* Social connections */}
+          <div className="flex items-center gap-4 pt-1 sm:pt-2 flex-wrap">
+            <span className="text-xs font-semibold text-slate-400">
+              Follow us for updates
+            </span>
+            <div className="flex items-center gap-2">
+              {socials.map((social) => (
+                <a
+                  key={social.name}
+                  href={social.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex h-7 w-7 sm:h-8 sm:w-8 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-400 hover:text-[#4f46e5] hover:border-[#818cf8] hover:shadow-[0_4px_12px_rgba(99,102,241,0.12)] transition-all duration-300 hover:-translate-y-0.5"
+                >
+                  <social.icon className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+                </a>
+              ))}
+            </div>
+          </div>
         </div>
 
-        {/* Description */}
-        <p className="mt-3 max-w-lg text-xs sm:text-sm leading-6 text-slate-400">
-          NIVITHUB is crafting next-generation software solutions, cloud
-          applications and automation tools to help businesses grow faster
-          with modern technology.
+        {/* Right Side: 3D Isometric Construction Illustration */}
+        <div className="hidden lg:col-span-6 lg:flex items-center justify-center relative">
+          <motion.div
+            initial={{ y: 8, opacity: 0 }}
+            animate={{ y: -8, opacity: 1 }}
+            transition={{
+              y: {
+                duration: 2.8,
+                repeat: Infinity,
+                repeatType: "reverse",
+                ease: "easeInOut"
+              },
+              opacity: { duration: 0.6 }
+            }}
+            className="w-full max-w-[420px] xl:max-w-[480px] flex justify-center"
+          >
+            <Image
+              src="/coming_soon_illustration.png"
+              alt="Website Under Construction Illustration"
+              width={500}
+              height={500}
+              priority
+              className="object-contain max-h-[50vh] xl:max-h-[55vh] w-auto drop-shadow-[0_20px_50px_rgba(99,102,241,0.1)] select-none"
+            />
+          </motion.div>
+        </div>
+      </main>
+
+      {/* Footer bar */}
+      <footer className="w-full text-center py-2 shrink-0 border-t border-slate-100/60 select-none">
+        <p className="text-[10px] sm:text-xs font-semibold text-slate-400">
+          © {new Date().getFullYear()} <span className="text-[#4f46e5]">NivitHub</span>. All rights reserved.
         </p>
-
-        {/* Countdown */}
-        <div className="mt-4">
-          <Countdown />
-        </div>
-
-        {/* Email Form */}
-        <div className="mt-4 w-full max-w-lg">
-          <EmailForm />
-        </div>
-      </div>
+      </footer>
     </section>
   );
 }

@@ -1,39 +1,19 @@
 export default function Background() {
   return (
-    <div className="absolute inset-0 -z-10 overflow-hidden">
-      {/* Base */}
-      <div className="absolute inset-0 bg-[#040816]" />
+    <div className="absolute inset-0 -z-10 overflow-hidden bg-gradient-to-b from-[#f9fafc] via-[#f4f6fe] to-[#ebeeff]">
+      {/* Soft purple/lilac ambient blurs */}
+      <div className="absolute right-[-10%] top-[10%] h-[600px] w-[600px] rounded-full bg-[#e5e4ff] opacity-70 blur-[130px] pointer-events-none" />
+      <div className="absolute left-[5%] top-[30%] h-[500px] w-[500px] rounded-full bg-[#ede6ff] opacity-80 blur-[110px] pointer-events-none" />
+      <div className="absolute right-[15%] bottom-[-5%] h-[400px] w-[400px] rounded-full bg-[#e0ddff] opacity-65 blur-[100px] pointer-events-none" />
 
-      {/* Center Glow */}
-      <div className="absolute left-1/2 top-[35%] h-[700px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-sky-500/10 blur-[140px]" />
-
-      {/* Left Glow */}
-      <div className="absolute -left-40 top-1/2 h-[500px] w-[500px] -translate-y-1/2 rounded-full bg-violet-500/15 blur-[150px]" />
-
-      {/* Right Glow */}
-      <div className="absolute -right-40 top-1/2 h-[500px] w-[500px] -translate-y-1/2 rounded-full bg-cyan-500/10 blur-[150px]" />
-
-      {/* Ring 1 */}
-      <div className="absolute left-1/2 top-[35%] h-[580px] w-[580px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/5" />
-
-      {/* Ring 2 */}
-      <div className="absolute left-1/2 top-[35%] h-[760px] w-[760px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/[0.03]" />
-
-      {/* Small Glow */}
-      <div className="absolute left-1/2 top-[35%] h-[250px] w-[250px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-400/10 blur-[100px]" />
-
-      {/* Dot Grid */}
-      <div
-        className="absolute inset-0 opacity-[0.08]"
+      {/* Top center dot pattern matching the mockup */}
+      <div 
+        className="absolute left-[50%] md:left-[52%] top-[14%] h-[60px] w-[100px] opacity-[0.18] pointer-events-none"
         style={{
-          backgroundImage:
-            "radial-gradient(rgba(255,255,255,0.9) 1px, transparent 1px)",
-          backgroundSize: "40px 40px",
+          backgroundImage: "radial-gradient(#6366f1 2px, transparent 2px)",
+          backgroundSize: "14px 14px"
         }}
       />
-
-      {/* Bottom Fade */}
-      <div className="absolute bottom-0 left-0 h-64 w-full bg-gradient-to-t from-[#040816] to-transparent" />
     </div>
   );
 }

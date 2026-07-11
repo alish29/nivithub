@@ -1,16 +1,37 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { Calendar, Clock, Timer, Zap } from "lucide-react";
 
 export default function Countdown() {
   const targetDate = useMemo(() => {
+    if (typeof window === "undefined") {
+      const date = new Date();
+      date.setDate(date.getDate() + 30);
+      return date;
+    }
+
+    const cached = localStorage.getItem("nivithub_countdown_target");
+    if (cached) {
+      const parsed = new Date(cached);
+      if (!isNaN(parsed.getTime())) {
+        // If it's already expired, let's keep it as is or reset for demo
+        const diff = parsed.getTime() - new Date().getTime();
+        if (diff > 0) {
+          return parsed;
+        }
+      }
+    }
+
+    // Set 30 days from now and cache it
     const date = new Date();
     date.setDate(date.getDate() + 30);
+    localStorage.setItem("nivithub_countdown_target", date.toISOString());
     return date;
   }, []);
 
   const getTimeLeft = () => {
-   const difference = targetDate.getTime() - new Date().getTime();
+    const difference = targetDate.getTime() - new Date().getTime();
 
     if (difference <= 0) {
       return {
@@ -59,26 +80,33 @@ export default function Countdown() {
   }, [targetDate]);
 
   const items = [
-    { label: "Days", value: timeLeft.days },
-    { label: "Hours", value: timeLeft.hours },
-    { label: "Minutes", value: timeLeft.minutes },
-    { label: "Seconds", value: timeLeft.seconds },
+    { label: "Days", value: timeLeft.days, icon: Calendar },
+    { label: "Hours", value: timeLeft.hours, icon: Clock },
+    { label: "Minutes", value: timeLeft.minutes, icon: Timer },
+    { label: "Seconds", value: timeLeft.seconds, icon: Zap },
   ];
 
   return (
-    <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
-      {items.map((item) => (
-        <div
-          key={item.label}
-          className="group flex h-16 w-16 sm:h-20 sm:w-20 flex-col items-center justify-center rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl shadow-[0_12px_35px_rgba(0,0,0,0.25)] transition-all duration-300 hover:-translate-y-1 hover:border-cyan-400/30 hover:bg-white/10"
-        >
-          <span className="text-2xl sm:text-3xl font-bold tracking-tight text-white">
-            {item.value}
-          </span>
+    <div className="flex items-center justify-center select-none">
+      {items.map((item, index) => (
+        <div key={item.label} className="flex items-center">
+          {/* Countdown card */}
+          <div className="flex h-18 w-15 sm:h-22 sm:w-18 md:h-24 md:w-20 flex-col items-center justify-between rounded-xl sm:rounded-2xl border border-[#e5e7eb] bg-white p-2 sm:p-2.5 shadow-[0_8px_30px_rgb(238,242,255,0.95)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(99,102,241,0.15)]">
+            <item.icon className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-[#818cf8]" />
+            <span className="text-xl sm:text-2xl md:text-3xl font-extrabold tracking-tight text-[#4f46e5]">
+              {item.value}
+            </span>
+            <span className="text-[8px] sm:text-[9px] md:text-[10px] font-semibold tracking-wider text-slate-400">
+              {item.label}
+            </span>
+          </div>
 
-          <span className="mt-0.5 text-[8px] uppercase tracking-[0.2em] text-slate-400">
-            {item.label}
-          </span>
+          {/* Colon separator */}
+          {index < items.length - 1 && (
+            <span className="mx-1 sm:mx-2 md:mx-2.5 text-lg sm:text-xl md:text-2xl font-bold text-[#818cf8]/60">
+              :
+            </span>
+          )}
         </div>
       ))}
     </div>
