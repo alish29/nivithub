@@ -91,9 +91,9 @@ export default function Countdown() {
       {items.map((item, index) => (
         <div key={item.label} className="flex items-center">
           {/* Countdown card */}
-          <div className="flex h-18 w-15 sm:h-22 sm:w-18 md:h-24 md:w-20 flex-col items-center justify-between rounded-xl sm:rounded-2xl border border-[#e5e7eb] bg-white p-2 sm:p-2.5 shadow-[0_8px_30px_rgb(238,242,255,0.95)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(99,102,241,0.15)]">
+          <div className="flex h-14 w-13 sm:h-16 sm:w-15 md:h-18 md:w-16 flex-col items-center justify-between rounded-xl sm:rounded-2xl border border-[#e5e7eb] bg-white p-1.5 sm:p-2 shadow-[0_8px_30px_rgb(238,242,255,0.95)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(99,102,241,0.15)]">
             <item.icon className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-[#818cf8]" />
-            <span className="text-xl sm:text-2xl md:text-3xl font-extrabold tracking-tight text-[#4f46e5]">
+            <span className="text-lg sm:text-xl md:text-2xl font-extrabold tracking-tight text-[#4f46e5]">
               {item.value}
             </span>
             <span className="text-[8px] sm:text-[9px] md:text-[10px] font-semibold tracking-wider text-slate-400">

@@ -16,16 +16,16 @@ export default function Hero() {
   ];
 
   return (
-    <section className="relative z-10 flex flex-col justify-between h-full w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 overflow-hidden">
+    <section className="relative z-10 flex flex-col justify-between h-full w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 sm:py-3 overflow-hidden">
       
       {/* Header bar */}
  
 
       {/* Main Grid content */}
-      <main className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center flex-1 w-full my-auto overflow-hidden">
+      <main className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-8 items-center flex-1 w-full my-auto overflow-hidden">
         
         {/* Left Side: Call to Action, Form, Countdown */}
-        <div className="lg:col-span-6 flex flex-col justify-center space-y-4 sm:space-y-5 md:space-y-6 text-left max-w-xl mx-auto lg:mx-0 select-none">
+        <div className="lg:col-span-6 flex flex-col justify-center space-y-2 sm:space-y-3 text-left max-w-xl mx-auto lg:mx-0 select-none">
           
           {/* Construction tag */}
           <div className="inline-block self-start">
@@ -36,7 +36,7 @@ export default function Hero() {
           </div>
 
           {/* Heading */}
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-black tracking-tight text-slate-900 leading-[1.08]">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black tracking-tight text-slate-900 leading-[1.08]">
             NivitHub is <br className="hidden sm:inline" />
             <span className="bg-gradient-to-r from-[#4f46e5] via-[#5c5ee6] to-[#6366f1] bg-clip-text text-transparent">
               Coming Soon!
@@ -54,12 +54,12 @@ export default function Hero() {
           </div>
 
           {/* Timer section */}
-          <div className="w-full flex justify-start pt-1">
+          <div className="w-full flex justify-start">
             <Countdown />
           </div>
 
           {/* Social connections */}
-          <div className="flex items-center gap-4 pt-1 sm:pt-2 flex-wrap">
+          <div className="flex items-center gap-4 flex-wrap">
             <span className="text-xs font-semibold text-slate-400">
               Follow us for updates
             </span>
@@ -93,7 +93,7 @@ export default function Hero() {
               },
               opacity: { duration: 0.6 }
             }}
-            className="w-full max-w-[420px] xl:max-w-[480px] flex justify-center"
+            className="w-full max-w-[380px] xl:max-w-[440px] flex justify-center"
           >
             <Image
               src="/coming_soon_illustration.png"
@@ -101,14 +101,14 @@ export default function Hero() {
               width={500}
               height={500}
               priority
-              className="object-contain max-h-[50vh] xl:max-h-[55vh] w-auto drop-shadow-[0_20px_50px_rgba(99,102,241,0.1)] select-none"
+              className="object-contain max-h-[45vh] xl:max-h-[50vh] w-auto drop-shadow-[0_20px_50px_rgba(99,102,241,0.1)] select-none"
             />
           </motion.div>
         </div>
       </main>
 
       {/* Footer bar */}
-      <footer className="w-full text-center py-2 shrink-0 border-t border-slate-100/60 select-none">
+      <footer className="w-full text-center py-1.5 shrink-0 border-t border-slate-100/60 select-none">
         <p className="text-[10px] sm:text-xs font-semibold text-slate-400">
           © {new Date().getFullYear()} <span className="text-[#4f46e5]">NivitHub</span>. All rights reserved.
         </p>
